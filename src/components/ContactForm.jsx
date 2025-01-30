@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Phonebook.module.css';
-import PropTypes from 'prop-types'
 
-const ContactForm = ({ name, number, onChange, onSubmit }) => {
-  return (
-    <>
+class ContactForm extends Component {
+  render() {
+    const { name, phoneNumber, onChange, onSubmit } = this.props;
+
+    return (
       <form className={styles.form} onSubmit={onSubmit}>
         <label className={styles.label}>
           <span className={styles.labelText}>Name</span>
@@ -20,33 +22,31 @@ const ContactForm = ({ name, number, onChange, onSubmit }) => {
           />
         </label>
         <label className={styles.label}>
-       <span className={styles.labelText}>Number</span>
+          <span className={styles.labelText}>Number</span>
           <input
             className={styles.input}
             type="tel"
-            name="number"
-            value={number}
+            name="phoneNumber"
+            value={phoneNumber}
             onChange={onChange}
             pattern="\+?\d{1,4}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
         </label>
-      <button className={styles.addButton} type="submit">
-        Add contact
-      </button>
+        <button type="submit" className={styles.addButton}>
+          Add contact
+        </button>
       </form>
-    </>
-  );
-};
+    );
+  }
+}
 
 ContactForm.propTypes = {
   name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
-
-
 
 export default ContactForm;
