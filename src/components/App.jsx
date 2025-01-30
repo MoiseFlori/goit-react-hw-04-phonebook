@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid'; 
+import { nanoid } from 'nanoid';
+import contactsData from './contactsData.json';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
@@ -9,16 +10,28 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contacts: [
-        { id: 'id-1', name: 'Rosie Simpson', phoneNumber: '459-12-56' },
-        { id: 'id-2', name: 'Hermione Kline', phoneNumber: '443-89-12' },
-        { id: 'id-3', name: 'Eden Clements', phoneNumber: '645-17-79' },
-        { id: 'id-4', name: 'Annie Copeland', phoneNumber: '227-91-26' },
-      ],
+      contacts: [],
       name: '',
       phoneNumber: '',
       filter: '',
     };
+  }
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('contacts');
+
+    if (savedContacts && JSON.parse(savedContacts).length > 0) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    } else {
+      this.setState({ contacts: contactsData });
+      localStorage.setItem('contacts', JSON.stringify(contactsData));
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
   }
 
   handleChange = event => {
@@ -30,7 +43,7 @@ class App extends Component {
     event.preventDefault();
     const { name, phoneNumber, contacts } = this.state;
 
-    if (name.trim() === '' || phoneNumber.trim() === '') return; 
+    if (name.trim() === '' || phoneNumber.trim() === '') return;
 
     const isDuplicate = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -70,7 +83,7 @@ class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm
           name={name}
-          phoneNumber={phoneNumber} 
+          phoneNumber={phoneNumber}
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
         />
