@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Phonebook.module.css';
+import PropTypes from 'prop-types'
 
 const ContactForm = ({ name, number, onChange, onSubmit }) => {
   return (
@@ -38,5 +39,14 @@ const ContactForm = ({ name, number, onChange, onSubmit }) => {
     </>
   );
 };
+
+ContactForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+
 
 export default ContactForm;

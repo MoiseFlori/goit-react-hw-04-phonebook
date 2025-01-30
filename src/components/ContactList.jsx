@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Phonebook.module.css';
+import PropTypes from 'prop-types'
 
 const ContactList = ({ contacts,deleteContact }) => {
   return (
@@ -15,4 +16,14 @@ const ContactList = ({ contacts,deleteContact }) => {
   );
 };
 
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      phoneNumber: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  deleteContact: PropTypes.func.isRequired,
+};
 export default ContactList;

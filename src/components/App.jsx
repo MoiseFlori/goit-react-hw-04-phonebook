@@ -5,6 +5,7 @@ import ContactList from './ContactList';
 import Filter from './Filter';  
 import styles from './Phonebook.module.css';
 
+
 const App = () => {
   const [contacts, setContacts] = useState([
     { id: 'id-1', name: 'Rosie Simpson', phoneNumber: '459-12-56' },
@@ -69,5 +70,8 @@ const App = () => {
     </div>
   );
 };
+
+
+
 
 export default App;
