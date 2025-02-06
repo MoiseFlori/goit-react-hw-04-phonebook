@@ -23,7 +23,6 @@ const App = () => {
       setContacts(contactsData);
       localStorage.setItem('contacts', JSON.stringify(contactsData));
     }
-    console.log('Contacts mount:', contacts);
   }, []); // dependența goala face ca acest efect sa ruleze doar o data la montarea componentei
 
 
@@ -34,7 +33,6 @@ const App = () => {
       // evita salvarea unui array gol in localStorage
       localStorage.setItem('contacts', JSON.stringify(contacts));
     }
-    console.log('Contacts updated:', contacts);
   }, [contacts]); // dependenta [contacts] face ca acest efect sa ruleze doar cand contacts se actualizeaza
 
 
