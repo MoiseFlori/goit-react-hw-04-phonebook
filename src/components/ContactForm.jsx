@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Phonebook.module.css';
 
-class ContactForm extends Component {
-  render() {
-    const { name, phoneNumber, onChange, onSubmit } = this.props;
-
+const ContactForm = ({ name, phoneNumber, onChange, onSubmit }) => {
+  
     return (
       <form className={styles.form} onSubmit={onSubmit}>
         <label className={styles.label}>
@@ -40,7 +38,7 @@ class ContactForm extends Component {
       </form>
     );
   }
-}
+
 
 ContactForm.propTypes = {
   name: PropTypes.string.isRequired,

@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Phonebook.module.css';
 
-class ContactList extends Component {
-  render() {
-    const { contacts, deleteContact } = this.props;
-
+const  ContactList  = ({ contacts, deleteContact }) => {
     return (
       <ul className={styles.contactList}>
         {contacts.map(contact => (
@@ -22,7 +19,6 @@ class ContactList extends Component {
       </ul>
     );
   }
-}
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(

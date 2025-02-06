@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Phonebook.module.css';
 
-class Filter extends Component {
-  render() {
-    const { filter, onFilterChange } = this.props;
-
+const Filter = ({ filter, onFilterChange }) => {
     return (
       <input
         type="text"
@@ -16,7 +13,7 @@ class Filter extends Component {
       />
     );
   }
-}
+
 
 Filter.propTypes = {
   filter: PropTypes.string.isRequired,
